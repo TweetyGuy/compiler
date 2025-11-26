@@ -1,0 +1,16 @@
+#ifndef DRIVER_H
+#define DRIVER_H
+
+#include <lexer.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <errors.h>
+
+int haserror = 0;
+
+int parse(int argc, char** argv);
+void preprocess();
+int compile(char** files, int n, char* outfile);
+
+#endif
