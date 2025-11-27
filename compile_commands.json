@@ -28,20 +28,5 @@
     "directory": "/home/ubuntu/Compiler",
     "file": "/home/ubuntu/Compiler/src/driver.c",
     "output": "/home/ubuntu/Compiler/bin/driver.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-Iinclude",
-      "-Iinclude/frontend",
-      "-Iinclude/backend",
-      "-o",
-      "bin/errors.o",
-      "src/errors.c"
-    ],
-    "directory": "/home/ubuntu/Compiler",
-    "file": "/home/ubuntu/Compiler/src/errors.c",
-    "output": "/home/ubuntu/Compiler/bin/errors.o"
   }
 ]

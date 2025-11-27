@@ -10,7 +10,7 @@
 int haserror = 0;
 
 int parse(int argc, char** argv);
-void preprocess();
+void preprocess(char** files, int n);
 int compile(char** files, int n, char* outfile);
 
 #endif

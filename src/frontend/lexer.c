@@ -25,20 +25,19 @@ char advance(file_t* file)
 {
   return file->buffer[file->current++];
 }
-// TODO error with compiling test2.c?? most likely because of eof error since its char 2 out of 0: ( and 1: )
-// no its cuz its escaping
+
 void scanNextToken(file_t* file, token_list_t* token_list)
 {
   char c = advance(file);
   switch(c)
   {
-    case '(': addToken((token_t){OPEN_PAREN, 0, file->line, file->start}, token_list); break;
-    case ')': addToken((token_t){CLOSE_PAREN, 0, file->line, file->start}, token_list); break;
-    case '{': addToken((token_t){OPEN_BRACE, 0, file->line, file->start}, token_list); break;
-    case '}': addToken((token_t){CLOSE_BRACE, 0, file->line, file->start}, token_list); break;
-    case '+': addToken((token_t){PLUS, 0, file->line, file->start}, token_list); break;
-    case '-': addToken((token_t){MINUS, 0, file->line, file->start}, token_list); break;
-    case '*': addToken((token_t){TIMES, 0, file->line, file->start}, token_list); break;
+    case '(': { addToken((token_t){OPEN_PAREN, 0, file->line, file->start}, token_list); break; }
+    case ')': { addToken((token_t){CLOSE_PAREN, 0, file->line, file->start}, token_list); break; }
+    case '{': { addToken((token_t){OPEN_BRACE, 0, file->line, file->start}, token_list); break; }
+    case '}': { addToken((token_t){CLOSE_BRACE, 0, file->line, file->start}, token_list); break; }
+    case '+': { addToken((token_t){PLUS, 0, file->line, file->start}, token_list); break; }
+    case '-': { addToken((token_t){MINUS, 0, file->line, file->start}, token_list); break; }
+    case '*': { addToken((token_t){TIMES, 0, file->line, file->start}, token_list); break; }
     case '/':
     {
       if (file->buffer[file->current + 1] == '/')
@@ -50,21 +49,24 @@ void scanNextToken(file_t* file, token_list_t* token_list)
         addToken((token_t){SLASH, 0, file->line, file->start}, token_list);
       break;
     }
-    case '%': addToken((token_t){MODULO, 0, file->line, file->start}, token_list); break;
-    case '!': addToken((token_t){NOT, 0, file->line, file->start}, token_list); break;
-    case ',': addToken((token_t){COMMA, 0, file->line, file->start}, token_list); break;
-    case ';': addToken((token_t){SEMICOLON, 0, file->line, file->start}, token_list); break;
-    case '=': addToken((token_t){EQUAL, 0, file->line, file->start}, token_list); break;
-    case '>': addToken((token_t){GREATER, 0, file->line, file->start}, token_list); break;
-    case '<': addToken((token_t){LESS, 0, file->line, file->start}, token_list); break;
-    case ' ': break;
+    case '%': { addToken((token_t){MODULO, 0, file->line, file->start}, token_list); break; }
+    case '!': { addToken((token_t){NOT, 0, file->line, file->start}, token_list); break; }
+    case ',': { addToken((token_t){COMMA, 0, file->line, file->start}, token_list); break; }
+    case ';': { addToken((token_t){SEMICOLON, 0, file->line, file->start}, token_list); break; }
+    case '=': { addToken((token_t){EQUAL, 0, file->line, file->start}, token_list); break; }
+    case '>': { addToken((token_t){GREATER, 0, file->line, file->start}, token_list); break; }
+    case '<': { addToken((token_t){LESS, 0, file->line, file->start}, token_list); break; }
+    case ' ': { break; }
     case '\n':
     {
       file->line++;
       break;
     }
     default:
+    {
       error(file->name, file->buffer, file->size, file->line, file->start, "unexpected token.");
+      break;
+    }
   }
 }
 

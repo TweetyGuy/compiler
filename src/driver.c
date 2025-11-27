@@ -3,6 +3,7 @@
 // fix reallocarray error handling
 
 #include <driver.h>
+#include <string.h>
 
 int parse(int argc, char** argv)
 {
@@ -45,13 +46,29 @@ int parse(int argc, char** argv)
       files[n-1] = argv[i];
     }
   }
+  preprocess(files, n);
   compile(files, n, outfile);
   free(files);
 
   return 0;
 }
 
-void preprocess();
+void preprocess(char** files, int n)
+{
+  for (int i = 0; i < n; i++)
+  {
+    int gcc_cmd = sizeof("gcc -E -P -o ");
+    int file_len = strlen(files[i]);
+    char* cmd = malloc(gcc_cmd + sizeof(".i") + 2 * file_len);
+    strcpy(cmd, "gcc -E -P -o ");
+    strcpy(cmd + gcc_cmd - 1, files[i]);
+    strcpy(cmd + gcc_cmd - 1 + file_len - 2, ".i ");
+    strcpy(cmd + gcc_cmd - 1 + file_len - 2 + strlen(".i "), files[i]);
+    system(cmd);
+    free(cmd);
+    files[i][strlen(files[i]) - 1] = 'i';
+  }
+}
 
 int compile(char** files, int n, char* outfile)
 {
@@ -78,7 +95,6 @@ int compile(char** files, int n, char* outfile)
     }
 
     fread(buffer, 1, len, fd);
-
     lex(files[i], buffer, len);
 
     free(buffer);
