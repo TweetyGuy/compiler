@@ -5,9 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int hasError = 0;
+
 // file name, ptr to file data, size of file data, erroneous line line, column of error, error message
 void error(char* name, char* data, int size, int line, int column, char* what);
 // file name, ptr to file data, size of file data, erroneous line line, column of error, error message
-void warning(char* file, char* data, int size, int line, int column, char* what);
+void warning(char* name, char* data, int size, int line, int offset, char* what);
 
 #endif
