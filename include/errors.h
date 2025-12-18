@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int hasError = 0;
+extern int hasError;
 
 // file name, ptr to file data, size of file data, erroneous line line, column of error, error message
 void error(char* name, char* data, int size, int line, int column, char* what);

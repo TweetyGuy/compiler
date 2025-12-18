@@ -1,11 +1,11 @@
 #ifndef DRIVER_H
 #define DRIVER_H
 
+#include <errors.h>
 #include <lexer.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <errors.h>
 
 int parse(int argc, char** argv);
 void preprocess(char** files, int n);

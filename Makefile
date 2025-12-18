@@ -4,10 +4,10 @@ CFLAGS = -I$(IDIR) -I$(IDIR)/frontend -I$(IDIR)/backend
 
 ODIR = bin
 
-_DEPS =	frontend/lexer.h driver.h errors.h
+_DEPS =	frontend/lexer.h frontend/hash.h driver.h errors.h
 DEPS = $(patsubst %, $(IDIR)/%, $(_DEPS))
 
-_OBJS = frontend/lexer.o driver.o errors.o
+_OBJS = frontend/lexer.o frontend/hash.o driver.o errors.o
 OBJS = $(patsubst %, $(ODIR)/%, $(_OBJS))
 
 $(ODIR)/%.o: src/%.c $(DEPS)
